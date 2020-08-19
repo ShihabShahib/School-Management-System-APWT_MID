@@ -158,7 +158,7 @@ router.post("/grade-sheet", function (req, res) {
 router.post("/grade-sheetPDF", function (req, res) {
   const sql = "SELECT * FROM grade";
   db.getResult(sql, function (results) {
-    var html = fs.readFileSync("./views/grade-sheetPDF.ejs", "utf8");
+    var html = fs.readFileSync("./views/teacher/grade-sheetPDF.ejs", "utf8");
     const options = { format: "A4" };
 
     res.render("teacher/grade-sheetPDF", { gradeList: results }, function (
@@ -253,7 +253,7 @@ router.post("/teacher-profile", function (req, res) {
     res.render("teacher/teacher-profilePDF", result[0], function (err, html) {
       pdf
         .create(html, options)
-        .toFile("./assets/uploads/profile.pdf", function (err, res) {
+        .toFile("./assets/teacher/uploads/profile.pdf", function (err, res) {
           if (err) return console.log(err);
           else {
             console.log(res); // { filename: '/app/businesscard.pdf' }
